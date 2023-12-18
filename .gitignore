@@ -1,0 +1,11 @@
+/.idea
+/.vscode
+/vendor
+*.log
+.env
+composer.lock
+public/storage/
+runtime
+!runtime/swoole.pid
+/config/app.php
+/config/database.php

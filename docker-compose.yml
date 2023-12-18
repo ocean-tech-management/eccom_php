@@ -1,0 +1,25 @@
+version: '3'
+
+networks:
+  app-tier:
+    driver: bridge
+
+services:
+    xiamen:
+        # image: xiamen:latest
+        build: .
+        ports:
+            - '80:80'
+            - '7272:7272' #websocket
+        networks:
+            - app-tier
+        volumes:
+            - .:/var/www/html
+    redis:
+        image: redis:latest
+        ports:
+            - "6379:6379"  # 映射 Redis 的 6379 端口到主机的 6379 端口
+        volumes:
+            - .docker-data/redis-data:/data  # 挂载 Redis 数据目录到本地
+        networks:
+            - app-tier
